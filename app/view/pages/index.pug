@@ -1,0 +1,95 @@
+extends ../layout
+block css
+  link(href="public/css/Index/main.css" ,rel="stylesheet")
+block content
+  .container
+    .row
+      .page-header.clearfix
+        h1.title= title
+        .col-sm-4
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(data-toggle="dropdown" ) 选择课程&nbsp
+              span.caret
+            ul.dropdown-menu(role="menu")
+              if imoocCourses
+                each imoocCourse in imoocCourses
+                  li
+                    if isSearch
+                      a(href="/search?q="+queryName+"&c="+imoocCourse.courseId)= imoocCourse.name
+                    else
+                      a(href="/?g="+currentPage+"&c="+imoocCourse.courseId)= imoocCourse.name
+        .col-sm-8
+          form(method="GET" action="/search")
+            .input-group.col-sm-4.pull-right
+              input.form-control(type="text" , name='q')
+              input(type="hidden" , name='c',value=currentCourse)
+              sapn.input-group-btn
+                button.btn.btn-default(type='submit') 搜索
+  .container
+    .row
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th imooc
+            if isSearch
+              th 组号
+            th 姓名
+            th 课程
+            th 学习进度
+            th 学习用时
+            th 最近学习
+            th 章节编号
+            th(colspan="3") 回答情况（绿：正确，白：基本正确，红：错误）
+        tbody
+          if message
+            each item in message
+              - var student = item.student
+              - var answer = item.answer
+              - var course = item.course
+              tr
+                td: a(href='http://www.imooc.com/u/'+student.imoocId+'/courses' target="_black")= student.imoocId
+                if isSearch
+                  td= student.group
+                td= student.name
+                td= course.courseName
+                td
+                  if course.completePercent == 0
+                    span.danger #{course.completePercent}%
+                  else if course.completePercent == 100
+                    span.success #{course.completePercent}%
+                  else
+                    span #{course.completePercent}%
+                td= course.useTime || "无"
+                td= course.chapterTitle || "无"
+                td= course.chapterId || "无"
+                td.success= answer.right
+                td= answer.littleRight
+                td.danger= answer.mistake
+      if totalPages > 1
+        ul.pagination
+          if currentPage == 1
+            li.disabled: a.previous_page(href="/?g="+((currentPage-1)>0?currentPage-1:currentPage)+"&c="+currentCourse) Previous
+          else
+            li: a.previous_page(href="/?g="+((currentPage-1)>0?currentPage-1:currentPage)+"&c="+currentCourse) Previous
+          - for (var i=1;i<=totalPages;i++)
+            if (currentPage == i)
+              li.active
+                span= i
+            else
+              if isSearch
+                li: a(href="/search?q="+queryName+"&g="+i)= i
+              else
+                li: a(href="/?g="+i+"&c="+currentCourse)= i
+          if currentPage == totalPages
+            li.disabled: a.next_page( href="/?g="+((currentPage+1)<=totalPages?currentPage+1:currentPage)+"&c="+currentCourse) Next
+          else
+            li: a.next_page( href="/?g="+((currentPage+1)<=totalPages?currentPage+1:currentPage)+"&c="+currentCourse) Next
+  footer.container
+    .row
+      hr
+      p.copyRight Power By Ali <a href="https://eggjs.org/">Egg</a> Framework
+      p.copyRight &copy Design By Class 152 HWJ
+  script(src="public/js/require.js" data-main="public/js/index")
+
+
+

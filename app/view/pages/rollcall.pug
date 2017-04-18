@@ -1,0 +1,28 @@
+extends ../layout
+block css
+    link(rel="stylesheet" href="/public/css/RollCall/index.css")
+block content
+    #wrap.wrap
+        #start.btn.btn-success 开始
+        if students
+            each item in students
+                div(id=item.imoocId).photo.photo_front
+                    .photo-wrap
+                        .side.side-front
+                            p(id="image_"+item.imoocId,data-picture=item.picture).image: img
+                            p(id="name_"+item.imoocId).name= item.name
+                            p(id="number_"+item.imoocId).number= item.studentId
+                        .side.side-back
+                                button(data-number=item.imoocId).right.btn.btn-success 正确
+                                button(data-number=item.imoocId).littleright.btn.btn-default 基本正确
+                                button(data-number=item.imoocId).mistake.btn.btn-danger 错误
+                                button(data-number=item.imoocId).noScoring.btn.btn-warning 不计分
+                                input(type="hidden" id="anw"+item.imoocId data-anw=item.answer)
+    #scoringMessage.modal.fade
+        .modal-dialog
+            .modal-content
+                .modal-body
+                    h3#message
+                .modal-footer
+                    button.btn.btn-default(type="button",data-dismiss="modal") 关闭
+    script(src="/public/js/require.js" data-main="/public/js/RollCall/main")

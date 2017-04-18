@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/*图片字体*/
+@import url(../../font/font-awesome/css/font-awesome.min.css);
+a {
+  text-decoration: none;
+  -webkit-transition: .5s;
+          transition: .5s; }
+  a:visited {
+    text-decoration: none; }
+  a:focus {
+    outline: none; }
+
+#addButton {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  z-index: 1000;
+  background-image: url("/public/imgs/decorate/add.png");
+  background-size: 100%;
+  opacity: 1;
+  box-shadow: #e74c3c 0 0 10px;
+  -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+          transform: rotate(0);
+  -webkit-transition: -webkit-transform ease-out .35s;
+          transition: transform ease-out .35s;
+  border: none;
+  margin-top: 10px; }
+
+#rightNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 290px;
+  padding: 100px 40px;
+  -webkit-transition: .5s;
+          transition: .5s;
+  z-index: 90;
+  background-color: #fff;
+  color: #fff;
+  -webkit-transform: translateX(290px);
+      -ms-transform: translateX(290px);
+          transform: translateX(290px); }
+  #rightNav .fun:hover {
+    outline: none;
+    text-decoration: none;
+    color: #2A93B1; }
+  #rightNav .fun {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 18px;
+    color: #444; }
+  #rightNav ul {
+    padding: 0; }
+  #rightNav li {
+    list-style: none; }
+    #rightNav li a {
+      color: #444; }
+  #rightNav li.active a {
+    color: #2A93B1 !important; }
+
+.showNav {
+  -webkit-transform: translateX(0px) !important;
+      -ms-transform: translateX(0px) !important;
+          transform: translateX(0px) !important; }
+
+#github {
+  font-family: FontAwesome, serif;
+  display: inline-block;
+  text-align: center;
+  color: #333; }
+  #github a {
+    margin-left: 20px;
+    font-size: 18px; }

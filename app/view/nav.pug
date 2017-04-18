@@ -1,0 +1,20 @@
+#addButton
+#rightNav
+	ul
+		if title == '点名册'
+			li: a.fun(href='/') 学习情况
+			li.active: a.fun(href='/rollcall') 点名册
+		else if title == 'Web学习情况'
+			li.active: a.fun(href='/') 学习情况
+			li: a.fun(href='/rollcall') 点名册
+		if isStudy
+			li: a.fun(href='/public/download/webStudy.xlsx') 获取课程学习Excel表格
+		if isStudy
+			li: a.fun(href='/public/download/webAnswer.xlsx') 获取问题回答Excel表格
+		if isAdmin
+			li: a.fun(href='/logout') 退出
+		else
+			li: a.fun(href='/login') 登录
+	#github
+		span.fa-github.fa-2x
+		a(href='https://github.com/hwj128911/imoocCrawler',target='_blank') 项目地址

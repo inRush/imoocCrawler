@@ -1,0 +1,22 @@
+th,
+tr {
+  text-align: center; }
+
+body {
+  font-family: 'Arial', 'Avenir Next', 'Lantinghei SC', monospace; }
+
+.title {
+  text-align: center; }
+
+.success {
+  color: green; }
+
+.danger {
+  color: red; }
+
+.copyRight {
+  text-align: center;
+  color: #aaa; }
+
+footer {
+  margin-bottom: 80px; }

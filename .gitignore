@@ -1,0 +1,14 @@
+logs/
+npm-debug.log
+node_modules/
+coverage/
+.idea/
+run/
+.DS_Store
+*.swp
+
+
+app/public/data
+app/public/imgs
+app/task/students.xlsx
+app/task/webStudy.xlsx
